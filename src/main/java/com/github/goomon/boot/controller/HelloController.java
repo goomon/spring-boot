@@ -1,12 +1,17 @@
 package com.github.goomon.boot.controller;
 
-import com.github.goomon.boot.service.SimpleHelloService;
+import com.github.goomon.boot.service.HelloService;
 
 import java.util.Objects;
 
 public class HelloController {
+    private final HelloService helloService;
+
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
+
     public String hello(String name) {
-        SimpleHelloService helloService = new SimpleHelloService();
         return helloService.sayHello(Objects.requireNonNull(name));
     }
 }
