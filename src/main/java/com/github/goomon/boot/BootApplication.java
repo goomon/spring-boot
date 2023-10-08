@@ -3,7 +3,7 @@ package com.github.goomon.boot;
 import com.github.goomon.boot.controller.HelloController;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
-import org.springframework.http.HttpHeaders;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class BootApplication {
 
 	public static void main(String[] args) {
-		TomcatServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+		ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
 		WebServer webServer = serverFactory.getWebServer(servletContext -> {
 
 			HelloController helloController = new HelloController();
@@ -32,11 +32,8 @@ public class BootApplication {
 						// Binding with controller.
 						String ret = helloController.hello(name);
 
-						resp.setStatus(HttpStatus.OK.value());
-						resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
+						resp.setContentType(MediaType.TEXT_PLAIN_VALUE);
 						resp.getWriter().println(ret);
-					} else if (req.getRequestURI().equals("/users") && req.getMethod().equals(HttpMethod.GET.name())) {
-						//
 					} else {
 						resp.setStatus(HttpStatus.NOT_FOUND.value());
 					}
