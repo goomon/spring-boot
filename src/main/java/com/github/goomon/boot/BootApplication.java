@@ -1,6 +1,6 @@
 package com.github.goomon.boot;
 
-import com.github.goomon.boot.annotation.MySpringBootApplication;
+import com.github.goomon.spring.config.MySpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
 @MySpringBootApplication
