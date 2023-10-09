@@ -1,12 +1,12 @@
 package com.github.goomon.boot.controller;
 
-import org.junit.jupiter.api.Test;
+import com.github.goomon.boot.annotation.UnitTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class HelloControllerTest {
-    @Test
+    @UnitTest
     void helloController() {
         HelloController helloController = new HelloController(name -> name);
 
@@ -15,7 +15,7 @@ public class HelloControllerTest {
         assertThat(ret).isEqualTo("Test");
     }
 
-    @Test
+    @UnitTest
     void failsHelloController() {
         HelloController helloController = new HelloController(name -> name);
 

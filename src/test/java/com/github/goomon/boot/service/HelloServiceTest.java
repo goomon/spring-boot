@@ -1,11 +1,11 @@
 package com.github.goomon.boot.service;
 
-import org.junit.jupiter.api.Test;
+import com.github.goomon.boot.annotation.UnitTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelloServiceTest {
-    @Test
+    @UnitTest
     void simpleHelloService() {
         SimpleHelloService helloService = new SimpleHelloService();
 
@@ -14,7 +14,7 @@ public class HelloServiceTest {
         assertThat(ret).isEqualTo("Hello Test");
     }
 
-    @Test
+    @UnitTest
     void helloDecorator() {
         HelloDecorator decorator = new HelloDecorator(name -> name);
 
