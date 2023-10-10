@@ -1,2 +1,3 @@
 com.github.goomon.spring.config.autoconfig.DispatcherServletConfig
 com.github.goomon.spring.config.autoconfig.TomcatWebServerConfig
+com.github.goomon.spring.config.autoconfig.JettyWebServerConfig
