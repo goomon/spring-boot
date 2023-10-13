@@ -1,6 +1,7 @@
 package com.github.goomon.spring.config.autoconfig;
 
 import com.github.goomon.spring.config.MyAutoConfiguration;
+import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
@@ -8,9 +9,6 @@ import org.springframework.core.env.Environment;
 public class ServerPropertiesConfig {
     @Bean
     public ServerProperties serverProperties(Environment env) {
-        ServerProperties props = new ServerProperties();
-        props.setContextPath(env.getProperty("contextPath"));
-        props.setPort(Integer.parseInt(env.getProperty("port")));
-        return props;
+        return Binder.get(env).bind("", ServerProperties.class).get();
     }
 }
