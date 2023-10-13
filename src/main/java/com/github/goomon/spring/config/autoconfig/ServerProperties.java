@@ -2,7 +2,7 @@ package com.github.goomon.spring.config.autoconfig;
 
 import com.github.goomon.spring.config.MyConfigurationProperties;
 
-@MyConfigurationProperties
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
     private String contextPath;
 
