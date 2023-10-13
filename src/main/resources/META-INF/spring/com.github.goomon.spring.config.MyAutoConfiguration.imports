@@ -1,5 +1,5 @@
+com.github.goomon.spring.config.autoconfig.PropertyPostProcessConfig
 com.github.goomon.spring.config.autoconfig.DispatcherServletConfig
 com.github.goomon.spring.config.autoconfig.TomcatWebServerConfig
 com.github.goomon.spring.config.autoconfig.JettyWebServerConfig
 com.github.goomon.spring.config.autoconfig.PropertyPlaceholderConfig
-com.github.goomon.spring.config.autoconfig.ServerPropertiesConfig
