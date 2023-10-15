@@ -1,13 +1,25 @@
 package com.github.goomon.boot.service;
 
 import com.github.goomon.boot.annotation.UnitTest;
+import com.github.goomon.boot.model.Hello;
+import com.github.goomon.boot.repository.HelloRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelloServiceTest {
     @UnitTest
     void simpleHelloService() {
-        SimpleHelloService helloService = new SimpleHelloService();
+        SimpleHelloService helloService = new SimpleHelloService(new HelloRepository() {
+            @Override
+            public Hello findHello(String name) {
+                return null;
+            }
+
+            @Override
+            public void increaseCount(String name) {
+
+            }
+        });
 
         String ret = helloService.sayHello("Test");
 
