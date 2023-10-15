@@ -3,6 +3,8 @@ package com.github.goomon.spring.config.autoconfig;
 import com.github.goomon.spring.config.ConditionalMyOnClass;
 import com.github.goomon.spring.config.EnableMyConfigurationProperties;
 import com.github.goomon.spring.config.MyAutoConfiguration;
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
@@ -14,6 +16,20 @@ import java.sql.Driver;
 @EnableMyConfigurationProperties(MyDataSourceProperties.class)
 public class DataSourceConfig {
     @Bean
+    @ConditionalMyOnClass("com.zaxxer.hikari.HikariDataSource")
+    public DataSource hikariDataSource(MyDataSourceProperties properties) {
+        HikariDataSource dataSource = new HikariDataSource();
+
+        dataSource.setDriverClassName(properties.getDriverClassName());
+        dataSource.setJdbcUrl(properties.getUrl());
+        dataSource.setUsername(properties.getUsername());
+        dataSource.setPassword(properties.getPassword());
+
+        return dataSource;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
     public DataSource dataSource(MyDataSourceProperties properties) throws ClassNotFoundException {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 
