@@ -1,3 +1,4 @@
+com.github.goomon.spring.config.autoconfig.DataSourceConfig
 com.github.goomon.spring.config.autoconfig.PropertyPostProcessConfig
 com.github.goomon.spring.config.autoconfig.DispatcherServletConfig
 com.github.goomon.spring.config.autoconfig.TomcatWebServerConfig
