@@ -5,6 +5,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+
 @Repository
 public class HelloRepositoryJdbc implements HelloRepository {
     private final JdbcTemplate jdbcTemplate;
@@ -30,5 +32,10 @@ public class HelloRepositoryJdbc implements HelloRepository {
         Hello hello = findHello(name);
         if (hello == null) jdbcTemplate.update("insert into hello values(?, ?)", name, 1);
         else jdbcTemplate.update("update hello set count = ? where name = ?", hello.getCount() + 1, name);
+    }
+
+    @PostConstruct
+    private void init() {
+        jdbcTemplate.execute("create table if not exists hello(name varchar(200) primary key, count int)");
     }
 }

@@ -1,9 +1,11 @@
 package com.github.goomon.boot;
 
-import com.github.goomon.spring.config.MySpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@MySpringBootApplication
+import javax.annotation.PostConstruct;
+
+@SpringBootApplication
 public class BootApplication {
 
 	public static void main(String[] args) {
