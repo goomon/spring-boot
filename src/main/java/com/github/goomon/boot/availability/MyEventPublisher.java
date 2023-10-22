@@ -14,7 +14,7 @@ public class MyEventPublisher {
         this.eventPublisher = eventPublisher;
     }
 
-    public void publishReadiness(ReadinessState state) {
+    public void publishAvailability(ReadinessState state) {
         AvailabilityChangeEvent.publish(eventPublisher, new RuntimeException(), state);
     }
 }
