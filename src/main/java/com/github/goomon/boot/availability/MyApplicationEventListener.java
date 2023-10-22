@@ -2,14 +2,22 @@ package com.github.goomon.boot.availability;
 
 import org.springframework.boot.availability.AvailabilityChangeEvent;
 import org.springframework.boot.context.event.*;
+import org.springframework.boot.context.metrics.buffering.BufferingApplicationStartup;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MyApplicationEventListener {
+
+    private final GenericApplicationContext context;
+
+    public MyApplicationEventListener(GenericApplicationContext context) {
+        this.context = context;
+    }
 
     @EventListener
     void onApplicationEvent(ApplicationEvent event) {
@@ -27,6 +35,10 @@ public class MyApplicationEventListener {
             System.out.println("[AvailabilityChangeEvent] Availability status is changed: " + ((AvailabilityChangeEvent<?>) event).getState());
         } else if (event instanceof ApplicationReadyEvent) {
             System.out.println("[ApplicationReadyEvent] Application runner is already called.");
+            BufferingApplicationStartup startup = (BufferingApplicationStartup) context.getApplicationStartup();
+            startup.drainBufferedTimeline().getEvents().forEach(timelineEvent -> {
+                System.out.println(timelineEvent.getStartupStep().getName());
+            });
         } else if (event instanceof ApplicationFailedEvent) {
             System.out.println("[ApplicationFailedEvent] Application is failed, please restart.");
         } else if (event instanceof ContextRefreshedEvent) {
