@@ -8,9 +8,7 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
 public class BootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication application = new SpringApplication(BootApplication.class);
-		application.setApplicationStartup(new BufferingApplicationStartup(2048));
-		application.run(args);
+		SpringApplication.run(BootApplication.class, args);
 	}
 
 }
