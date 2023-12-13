@@ -14,7 +14,7 @@ public class SimpleServiceV2 {
     private final LogTracerV2 tracer;
 
     public void save(String id, TraceId prev) {
-        TraceStatus status = tracer.beginSync(prev, "SimpleServiceV1.save()");
+        TraceStatus status = tracer.beginSync(prev, "SimpleServiceV2.save()");
         try {
             repository.save(id, status.getTraceId());
             tracer.end(status);

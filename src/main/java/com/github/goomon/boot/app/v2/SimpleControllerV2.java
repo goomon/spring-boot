@@ -15,7 +15,7 @@ public class SimpleControllerV2 {
 
     @RequestMapping("/v2/request")
     public String request(String id) {
-        TraceStatus status = tracer.begin("SimpleControllerV1.request()");
+        TraceStatus status = tracer.begin("SimpleControllerV2.request()");
         try {
             service.save(id, status.getTraceId());
             tracer.end(status);

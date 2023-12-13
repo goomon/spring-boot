@@ -14,7 +14,7 @@ public class SimpleRepositoryV2 {
 
     public void save(String id, TraceId prev) {
 
-        TraceStatus status = tracer.beginSync(prev, "SimpleRepositoryV1.save()");
+        TraceStatus status = tracer.beginSync(prev, "SimpleRepositoryV2.save()");
         try {
             if (id.equals("ex")) {
                 throw new IllegalArgumentException();
