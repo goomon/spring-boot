@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class SimpleRepository {
+public class SimpleRepository implements SimpleRepositoryInterface {
 
+    @Override
     public void save(String id) {
         if (id.equals("ex")) {
             throw new IllegalArgumentException();
