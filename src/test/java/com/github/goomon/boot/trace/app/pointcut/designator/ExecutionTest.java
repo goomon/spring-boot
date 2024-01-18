@@ -64,8 +64,15 @@ public class ExecutionTest {
     }
 
     @Test
-    void typeExactMatch() {
+    void typeExactMatchWithClass() {
         pointcut.setExpression("execution(public void com.github.goomon.boot.app.SimpleRepository.*(..))");
+        assertThat(pointcut.matches(method, SimpleRepository.class)).isTrue();
+    }
+
+    @DisplayName("부모타입으로 매칭을 적용해도 하위 타입에 모두 적용된다.")
+    @Test
+    void typeExactMatchWithInterface() {
+        pointcut.setExpression("execution(public void com.github.goomon.boot.app.SimpleRepositoryInterface.*(..))");
         assertThat(pointcut.matches(method, SimpleRepository.class)).isTrue();
     }
 
