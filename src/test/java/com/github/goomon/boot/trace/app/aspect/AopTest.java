@@ -1,7 +1,7 @@
 package com.github.goomon.boot.trace.app.aspect;
 
 import com.github.goomon.boot.app.SimpleRepository;
-import com.github.goomon.boot.app.SimpleService;
+import com.github.goomon.boot.app.SimpleServiceImpl;
 import com.github.goomon.boot.aspect.Aspect4;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 public class AopTest {
 
     @Autowired
-    SimpleService service;
+    SimpleServiceImpl service;
 
     @Autowired
     SimpleRepository simpleRepository;
