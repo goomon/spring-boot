@@ -47,6 +47,13 @@ public class AtWithinTest {
         child.saveForParent();
     }
 
+    @DisplayName("@within은 부모 메서드를 오버라이드한 경우 AOP가 적용된다.")
+    @Test
+    void atWithExactMatchForParentWithOverride() {
+        log.info("parent: {}", child.getClass());
+        child.saveForParentForOverride();
+    }
+
     static class Config {
 
         @Bean
@@ -80,6 +87,10 @@ public class AtWithinTest {
         public void saveForParent() {
             log.info("[parent] saveForParent()");
         }
+
+        public void saveForParentForOverride() {
+            log.info("[parent] saveForParentForOverride()");
+        }
     }
 
     @Slf4j
@@ -87,6 +98,11 @@ public class AtWithinTest {
     static class Child extends Parent {
         public void saveForChild() {
             log.info("[child] saveForChild");
+        }
+
+        @Override
+        public void saveForParentForOverride() {
+            log.info("[child] saveForParentForOverride()");
         }
     }
 }

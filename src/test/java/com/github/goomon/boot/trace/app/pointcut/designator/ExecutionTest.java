@@ -63,6 +63,13 @@ public class ExecutionTest {
         assertThat(pointcut.matches(method, SimpleRepository.class)).isTrue();
     }
 
+    @DisplayName("하위 패키지까지 포괄하는 표현식")
+    @Test
+    void subPackageExactMatch2() {
+        pointcut.setExpression("execution(public void com.github.goomon.boot..*(..))");
+        assertThat(pointcut.matches(method, SimpleRepository.class)).isTrue();
+    }
+
     @Test
     void typeExactMatchWithClass() {
         pointcut.setExpression("execution(public void com.github.goomon.boot.app.SimpleRepository.*(..))");
